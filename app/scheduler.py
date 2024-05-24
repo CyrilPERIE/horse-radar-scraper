@@ -3,6 +3,7 @@ import logging
 import schedule
 import time
 from .api_client import send_data_to_api
+from .scrapers.equiradar import equiradar
 from .scrapers.instagram import instagram
 from .scrapers.leboncoin import leboncoin
 from .scrapers.marketplace import marketplace
@@ -14,8 +15,9 @@ def main():
     logging.info("[scheduler] > Starting...")
     
     schedule.every().hour.at(":00").do(scrap_and_store, scrap_fn=instagram)
-    schedule.every().hour.at(":20").do(scrap_and_store, scrap_fn=leboncoin)
-    schedule.every().hour.at(":40").do(scrap_and_store, scrap_fn=marketplace)
+    schedule.every().hour.at(":15").do(scrap_and_store, scrap_fn=leboncoin)
+    schedule.every().hour.at(":30").do(scrap_and_store, scrap_fn=marketplace)
+    schedule.every().hour.at(":45").do(scrap_and_store, scrap_fn=equiradar)
 
     logging.info("[scheduler] > Running !")
 
