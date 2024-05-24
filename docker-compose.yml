@@ -1,0 +1,9 @@
+version: '3'
+services:
+  webscraping:
+    build: .
+    environment:
+      - API_ENDPOINT=${API_ENDPOINT}
+    volumes:
+      - .:/app
+    restart: always
